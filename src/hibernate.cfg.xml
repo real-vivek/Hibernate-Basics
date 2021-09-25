@@ -4,20 +4,22 @@
 
 <hibernate-configuration>
 
-    <session-factory>
+	<session-factory>
 
-        <!-- Setting JDBC db connection -->
-        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/hb_employee_tracker</property>
-        <property name="connection.username">hbstudent</property>
-        <property name="connection.password">hbstudent</property>
+		<!-- Setting JDBC db connection -->
+		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/hb_employee_tracker</property>
+		<property name="connection.username">hbemployee</property>
+		<property name="connection.password">hbemployee</property>
 
-        <!-- Setting SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- Setting SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
-        <!-- Echoing SQL statement -->
-        <property name="show_sql">true</property>
+		<!-- Echoing SQL statement -->
+		<property name="show_sql">true</property>
 
-    </session-factory>
+		<property name="hibernate.current_session_context_class">thread</property>
+
+	</session-factory>
 
 </hibernate-configuration>
