@@ -26,8 +26,10 @@ public class Employee {
 
 	private String email;
 
+	public Employee() {
+	}
+
 	public Employee(String firstName, String lastName, String email) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
