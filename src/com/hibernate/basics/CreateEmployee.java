@@ -17,21 +17,19 @@ public class CreateEmployee {
 		// Creating session object
 		Session session = sessionFactory.getCurrentSession();
 
+		Employee employee1 = new Employee("First", "Last", "first@gmail.com");
 		try {
 
-			// Begin Transaction
+			// Starting the Transaction
 			session.beginTransaction();
 
-			// Retrieving Employee object having id 1
-			// For session.get to work we need default constructor
-			// If employee with given id is not present then null is returned
-			Employee retrievedEmployee = session.get(Employee.class, 1);
-			
-			System.out.println("Here is the employee which is retrieved: "+retrievedEmployee);
-
 			// Saving the employee object in db
+			session.save(employee1);
+
+			// Committing the transaction
 			session.getTransaction().commit();
 		} finally {
+			// Closing the session factory object
 			sessionFactory.close();
 		}
 
