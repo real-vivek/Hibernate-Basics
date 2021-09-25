@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +28,9 @@ public class SalaryAccount {
 	@Column(name = "bank_branch")
 	private String bankBranch;
 
+	@OneToOne(mappedBy = "salaryAccount") // Refers to SalaryAccount in EmployeeOneToOne
+	private EmployeeOneToOne employeeOneToOne;
+
 	public SalaryAccount() {
 	}
 
@@ -34,6 +38,22 @@ public class SalaryAccount {
 		this.bankName = bankName;
 		this.bankAccNo = bankAccNo;
 		this.bankBranch = bankBranch;
+	}
+
+	public String getBankAccNo() {
+		return bankAccNo;
+	}
+
+	public void setBankAccNo(String bankAccNo) {
+		this.bankAccNo = bankAccNo;
+	}
+
+	public EmployeeOneToOne getEmployeeOneToOne() {
+		return employeeOneToOne;
+	}
+
+	public void setEmployeeOneToOne(EmployeeOneToOne employeeOneToOne) {
+		this.employeeOneToOne = employeeOneToOne;
 	}
 
 	public Integer getAccId() {
@@ -70,7 +90,7 @@ public class SalaryAccount {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(accId, bankAccNo, bankBranch, bankName);
+		return Objects.hash(accId, bankAccNo, bankBranch, bankName, employeeOneToOne);
 	}
 
 	@Override
@@ -83,7 +103,8 @@ public class SalaryAccount {
 			return false;
 		SalaryAccount other = (SalaryAccount) obj;
 		return Objects.equals(accId, other.accId) && Objects.equals(bankAccNo, other.bankAccNo)
-				&& Objects.equals(bankBranch, other.bankBranch) && Objects.equals(bankName, other.bankName);
+				&& Objects.equals(bankBranch, other.bankBranch) && Objects.equals(bankName, other.bankName)
+				&& Objects.equals(employeeOneToOne, other.employeeOneToOne);
 	}
 
 	@Override

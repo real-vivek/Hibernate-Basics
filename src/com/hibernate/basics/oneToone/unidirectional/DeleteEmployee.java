@@ -14,16 +14,17 @@ public class DeleteEmployee {
 		// Creating session factory object
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.oneToone.xml")
 				.addAnnotatedClass(EmployeeOneToOne.class).addAnnotatedClass(SalaryAccount.class).buildSessionFactory();
-		try {
 
-			// Creating session object
-			Session session = sessionFactory.getCurrentSession();
+		// Creating session object
+		Session session = sessionFactory.getCurrentSession();
+		
+		try {
 
 			// Starting the Transaction
 			session.beginTransaction();
 
 			// Retrieving Employee object having id 1
-			EmployeeOneToOne retrievedEmployee = session.get(EmployeeOneToOne.class, 1);
+			EmployeeOneToOne retrievedEmployee = session.get(EmployeeOneToOne.class, 187);
 
 			// Deleting retrieved employee object
 			// If retrievedEmployee is null then IllegalArgumentException is thrown
@@ -51,7 +52,12 @@ public class DeleteEmployee {
 			// Committing the transaction
 			newSession.getTransaction().commit();
 
-		} finally {
+		} catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			// CLosing session object
+			session.close();
+			
 			// Closing the session factory object
 			sessionFactory.close();
 		}
