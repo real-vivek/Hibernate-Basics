@@ -2,6 +2,7 @@ package com.hibernate.basics.entity;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class SalaryAccount {
 	@Column(name = "bank_branch")
 	private String bankBranch;
 
-	@OneToOne(mappedBy = "salaryAccount") // Refers to SalaryAccount in EmployeeOneToOne
+	@OneToOne(mappedBy = "salaryAccount", cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}) // Refers to SalaryAccount in EmployeeOneToOne
 	private EmployeeOneToOne employeeOneToOne;
 
 	public SalaryAccount() {

@@ -29,7 +29,7 @@ public class EmployeeOneToOne {
 
 	private String email;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = {CascadeType.ALL} )
 	@JoinColumn(name = "sal_acc_id")
 	private SalaryAccount salaryAccount;
 	

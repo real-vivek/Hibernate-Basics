@@ -24,7 +24,7 @@ public class DeleteEmployee {
 			session.beginTransaction();
 
 			// Retrieving Employee object having id 1
-			EmployeeOneToOne retrievedEmployee = session.get(EmployeeOneToOne.class, 187);
+			EmployeeOneToOne retrievedEmployee = session.get(EmployeeOneToOne.class, 1);
 
 			// Deleting retrieved employee object
 			// If retrievedEmployee is null then IllegalArgumentException is thrown
