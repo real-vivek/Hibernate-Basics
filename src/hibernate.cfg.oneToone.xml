@@ -1,0 +1,25 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- Setting JDBC db connection -->
+		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/hb_employee_tracker_one_to_one</property>
+		<property name="connection.username">hbemployee</property>
+		<property name="connection.password">hbemployee</property>
+
+		<!-- Setting SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!-- Echoing SQL statement -->
+		<property name="show_sql">true</property>
+
+		<property name="hibernate.current_session_context_class">thread</property>
+
+	</session-factory>
+
+</hibernate-configuration>
