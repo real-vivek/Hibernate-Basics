@@ -1,5 +1,7 @@
 package com.hibernate.basics.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,10 +32,14 @@ public class EmployeeOneToOne {
 
 	private String email;
 
-	@OneToOne(cascade = {CascadeType.ALL} )
+	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sal_acc_id")
 	private SalaryAccount salaryAccount;
-	
+
+	@OneToMany(mappedBy = "employee", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
+	private List<Department> departmentList;
+
 	public EmployeeOneToOne() {
 	}
 
@@ -41,7 +48,7 @@ public class EmployeeOneToOne {
 		this.lastName = lastName;
 		this.email = email;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -82,9 +89,17 @@ public class EmployeeOneToOne {
 		this.salaryAccount = salaryAccount;
 	}
 
+	public List<Department> getDepartmentList() {
+		return departmentList;
+	}
+
+	public void setDepartmentList(List<Department> departmentList) {
+		this.departmentList = departmentList;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, firstName, id, lastName, salaryAccount);
+		return Objects.hash(departmentList, email, firstName, id, lastName, salaryAccount);
 	}
 
 	@Override
@@ -96,15 +111,23 @@ public class EmployeeOneToOne {
 		if (getClass() != obj.getClass())
 			return false;
 		EmployeeOneToOne other = (EmployeeOneToOne) obj;
-		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
-				&& Objects.equals(id, other.id) && Objects.equals(lastName, other.lastName)
-				&& Objects.equals(salaryAccount, other.salaryAccount);
+		return Objects.equals(departmentList, other.departmentList) && Objects.equals(email, other.email)
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(id, other.id)
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(salaryAccount, other.salaryAccount);
 	}
 
 	@Override
 	public String toString() {
 		return "EmployeeOneToOne [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", salaryAccount=" + salaryAccount + "]";
+				+ ", salaryAccount=" + salaryAccount + ", departmentList=" + departmentList + "]";
+	}
+	
+	public void add(Department department) {
+		if(departmentList==null) {
+			departmentList = new ArrayList<Department>();
+		}
+		departmentList.add(department);
+		department.setEmployee(this);
 	}
 
 }
