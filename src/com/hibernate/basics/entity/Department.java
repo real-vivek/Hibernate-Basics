@@ -1,5 +1,6 @@
 package com.hibernate.basics.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,12 +33,24 @@ public class Department {
 	@JoinColumn(name = "employee_id")
 	private EmployeeOneToOne employee;
 
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "department_id")
+	private List<Rating> ratings;
+	
 	public Department() {
 	}
 
 	public Department(String departmentName, String departmentDesc) {
 		this.departmentName = departmentName;
 		this.departmentDesc = departmentDesc;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
 	}
 
 	public Integer getId() {
