@@ -7,6 +7,7 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +37,7 @@ public class EmployeeOneToOne {
 	@JoinColumn(name = "sal_acc_id")
 	private SalaryAccount salaryAccount;
 
-	@OneToMany(mappedBy = "employee", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "employee", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
 	private List<Department> departmentList;
 
@@ -119,11 +120,11 @@ public class EmployeeOneToOne {
 	@Override
 	public String toString() {
 		return "EmployeeOneToOne [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", salaryAccount=" + salaryAccount + ", departmentList=" + departmentList + "]";
+				+ "]";
 	}
-	
+
 	public void add(Department department) {
-		if(departmentList==null) {
+		if (departmentList == null) {
 			departmentList = new ArrayList<Department>();
 		}
 		departmentList.add(department);

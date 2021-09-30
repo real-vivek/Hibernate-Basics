@@ -29,7 +29,6 @@ public class CreateDepartment {
 			// Saving the employee object in db
 			// As cascade is all salary account object will also be saved
 			EmployeeOneToOne employeeOneToOne = session.get(EmployeeOneToOne.class, 5);
-			System.out.println(employeeOneToOne);
 			employeeOneToOne.add(department1);
 			employeeOneToOne.add(department);
 			
