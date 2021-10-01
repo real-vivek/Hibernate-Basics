@@ -27,9 +27,11 @@ public class Project {
 
 	@Column(name = "project_location")
 	private String porjectLocation;
+	
+	public Project() {
+	}
 
 	public Project(String name, String porjectLocation) {
-		super();
 		this.name = name;
 		this.porjectLocation = porjectLocation;
 	}
