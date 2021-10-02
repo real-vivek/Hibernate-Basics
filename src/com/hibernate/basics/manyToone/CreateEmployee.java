@@ -14,7 +14,7 @@ public class CreateEmployee {
 
 	public static void main(String[] args) {
 		// Creating session factory object
-		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.oneToone.xml")
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(EmployeeOneToOne.class).addAnnotatedClass(SalaryAccount.class)
 				.addAnnotatedClass(Department.class).buildSessionFactory();
 
